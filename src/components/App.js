@@ -1,41 +1,27 @@
-import React, { useState } from "react";
-import Question from "./Question";
-import quiz from "../data/quiz";
+import React ,{useEffect,useState}from 'react';
+import './App.css';
 
 function App() {
-  const [questions, setQuestions] = useState(quiz);
-  const [currentQuestionId, setCurrentQuestion] = useState(1);
-  const [score, setScore] = useState(0);
-  const currentQuestion = questions.find((q) => q.id === currentQuestionId);
-
-  function handleQuestionAnswered(correct) {
-    if (currentQuestionId < questions.length) {
-      setCurrentQuestion((currentQuestionId) => currentQuestionId + 1);
-    } else {
-      setCurrentQuestion(null);
-    }
-    if (correct) {
-      setScore((score) => score + 1);
-    }
-  }
-
-  return (
-    <main>
-      <section>
-        {currentQuestion ? (
-          <Question
-            question={currentQuestion}
-            onAnswered={handleQuestionAnswered}
-          />
-        ) : (
-          <>
-            <h1>Game Over</h1>
-            <h2>Total Correct: {score}</h2>
-          </>
-        )}
-      </section>
-    </main>
-  );
+  const[image,setImage]=useState[image]
+  const URL = "https://dog.ceo/api/breeds/image/random"
+  useEffect(
+    fetch(URL)
+    .then(response =>(response.json()))
+    .then(data=>{
+     setImage(image)
+    }), []
+  )
+  return(
+    
+    <div>
+      {Image ? (
+        <img src={Image} alt="A Random Dog" />
+      ) : (
+        <p>Loading...</p>
+      )}
+    </div>
+    
+  )
 }
 
 export default App;
